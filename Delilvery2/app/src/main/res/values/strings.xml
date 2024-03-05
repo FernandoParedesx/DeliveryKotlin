@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Delilvery2</string>
+    <string name="email">Email</string>
+    <string name="password">Password\n</string>
+    <string name="login">Login</string>
+    <string name="registrarse">Registro</string>
+    <string name="name">Name\n</string>
+    <string name="register">Register\n</string>
+</resources>
