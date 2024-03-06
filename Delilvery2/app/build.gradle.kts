@@ -75,4 +75,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation (platform(libs.firebase.bom))
     implementation (libs.material)
+    implementation (libs.glide)
+    annotationProcessor (libs.glide.compiler)
+
 }
