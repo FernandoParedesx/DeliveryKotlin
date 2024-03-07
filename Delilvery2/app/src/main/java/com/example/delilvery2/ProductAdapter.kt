@@ -4,16 +4,20 @@ package com.example.delilvery2
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter<ProductViewHolder>() {
+class ProductAdapter(
+    private val products: List<Product>,
+    private val onProductClickListener: (Product) -> Unit
+) : RecyclerView.Adapter<ProductViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false)
-        return ProductViewHolder(view)
+        return ProductViewHolder(view, onProductClickListener)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -26,22 +30,29 @@ class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter
     }
 }
 
-class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ProductViewHolder(itemView: View, private val onProductClickListener: (Product) -> Unit) : RecyclerView.ViewHolder(itemView) {
     private val nameTextView: TextView = itemView.findViewById(R.id.product_name)
     private val descriptionTextView: TextView = itemView.findViewById(R.id.product_description)
     private val priceTextView: TextView = itemView.findViewById(R.id.product_price)
     private val imageView: ImageView = itemView.findViewById(R.id.product_image)
+    private val btnComprar: Button = itemView.findViewById(R.id.btncomprar)
 
     fun bind(product: Product) {
         nameTextView.text = product.name
         descriptionTextView.text = product.description
         priceTextView.text = "$${product.price}"
 
-        // Cargar la imagen usando Glide
         Glide.with(itemView)
-            .load(product.image) // URL de la imagen almacenada en Firestore
-            .placeholder(R.drawable.placeholder_image) // Imagen de carga mientras se carga la imagen real
-            .error(R.drawable.placeholder_image) // Imagen a mostrar en caso de error al cargar la imagen
+            .load(product.image)
+            .placeholder(R.drawable.placeholder_image)
+            .error(R.drawable.placeholder_image)
             .into(imageView)
+
+        // Listener para el botón de compra
+        btnComprar.setOnClickListener {
+            // Llama al oyente de clics y pasa el producto asociado
+            onProductClickListener.invoke(product)
+        }
     }
 }
+

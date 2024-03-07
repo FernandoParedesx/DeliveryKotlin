@@ -7,4 +7,6 @@
     <string name="name">Name\n</string>
     <string name="register">Register\n</string>
     <string name="product_image_description" />
+    <string name="carrito">Carrito</string>
+    <string name="quitar">Quitar</string>
 </resources>

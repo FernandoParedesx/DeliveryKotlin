@@ -7,6 +7,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="663dp" />
+
+    <Button
+        android:id="@+id/btnCarrito"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:text="@string/carrito" />
 
 </LinearLayout>
